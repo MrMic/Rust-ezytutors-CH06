@@ -51,10 +51,10 @@ impl From<web::Json<CreateCourse>> for CreateCourse {
             course_description: new_course.course_description.clone(),
             course_format: new_course.course_format.clone(),
             course_structure: new_course.course_structure.clone(),
-            course_level: new_course.course_level.clone(),
             course_duration: new_course.course_duration.clone(),
             course_language: new_course.course_language.clone(),
             course_price: new_course.course_price,
+            course_level: new_course.course_level.clone(),
         }
     }
 }

@@ -5,8 +5,8 @@ drop table if exists ezy_course_c6 cascade;
 drop table if exists ezy_tutor_c6;
 
 /* Drop app user if it exists and recreate it */
-drop user if exists truuser;
-create user truuser with password 'mypassword';
+-- drop user if exists truuser;
+-- create user truuser with password 'mypassword';
 
 /* Create tables. */
 /* Note: Don't put a comma after last field */
@@ -43,6 +43,7 @@ grant all privileges on table ezy_course_c6 to truuser;
 grant all privileges on all sequences in schema public to truuser;
 /* grant all privileges on sequence ezy_tutor_c6_tutor_id_seq1; */
 
+/* Load seed data for testing */
 SELECT setval('ezy_course_c6_course_id_seq', 1);
 SELECT setval('ezy_tutor_c6_tutor_id_seq', 1);
 
@@ -55,6 +56,7 @@ values(2,'Frank','http://s3.amazon.aws.com/pic2','Frank is an expert nuclear eng
 
 insert into ezy_tutor_c6(tutor_id, tutor_name, tutor_pic_url,tutor_profile)
 values(3,'Bob','http://s3.amazon.aws.com/pic3','Bob has spent many years teaching ML to students and professionals alike');
+
 
 insert into ezy_course_c6
     (course_id,tutor_id, course_name,course_level, posted_time)

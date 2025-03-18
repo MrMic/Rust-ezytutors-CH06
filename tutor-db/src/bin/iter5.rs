@@ -1,5 +1,6 @@
 use actix_web::{web, App};
 use dotenv::dotenv;
+use errors::EzyTutorError;
 use sqlx::postgres::PgPool;
 use state::AppState;
 use std::{env, sync::Mutex};
@@ -38,6 +39,9 @@ async fn main() -> std::io::Result<()> {
         let shared_data = shared_data.clone();
         App::new()
             .app_data(shared_data.clone())
+            .app_data(web::JsonConfig::default().error_handler(|_err, _req| {
+                EzyTutorError::InvalidInput("Please provide valid JSON input".to_string()).into()
+            }))
             .configure(general_routes)
             .configure(course_routes)
     };
